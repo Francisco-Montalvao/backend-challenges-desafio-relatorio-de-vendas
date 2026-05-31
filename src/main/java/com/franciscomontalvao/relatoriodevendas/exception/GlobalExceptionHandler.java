@@ -4,8 +4,10 @@ package com.franciscomontalvao.relatoriodevendas.exception;
 import com.franciscomontalvao.relatoriodevendas.dto.erro.ErroPadrao;
 import com.franciscomontalvao.relatoriodevendas.dto.erro.Erros;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,6 +37,20 @@ public class GlobalExceptionHandler {
 		);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
+
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<ErroPadrao> jaExistente(DataIntegrityViolationException ex, HttpServletRequest http){
+		ErroPadrao erro = new ErroPadrao(
+				LocalDate.now(),
+				HttpStatus.CONFLICT.value(),
+				"Já existe um registro com esses dados",
+				http.getServletPath(),
+				null
+		);
+
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(erro);
+	}
+
 
 	@ExceptionHandler(VendedorException.class)
 	public ResponseEntity<ErroPadrao> vendedorNaoEcontrado (VendedorException ex, HttpServletRequest http){
