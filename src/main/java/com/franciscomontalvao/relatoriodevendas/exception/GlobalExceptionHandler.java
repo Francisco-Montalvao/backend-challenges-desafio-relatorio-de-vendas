@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -52,8 +51,8 @@ public class GlobalExceptionHandler {
 	}
 
 
-	@ExceptionHandler(VendedorException.class)
-	public ResponseEntity<ErroPadrao> vendedorNaoEcontrado (VendedorException ex, HttpServletRequest http){
+	@ExceptionHandler(RecursoNaoEncontradoException.class)
+	public ResponseEntity<ErroPadrao> vendedorNaoEcontrado (RecursoNaoEncontradoException ex, HttpServletRequest http){
 		ErroPadrao erro = new ErroPadrao(
 				LocalDate.now(),
 				ex.getStatus().value(),
