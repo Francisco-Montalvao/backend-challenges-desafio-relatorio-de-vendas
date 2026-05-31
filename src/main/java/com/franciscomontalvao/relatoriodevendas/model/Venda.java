@@ -26,7 +26,7 @@ public class Venda {
 
 
 	@Column(name = "valor_total", nullable = false)
-	private BigDecimal valor_total;
+	private BigDecimal valorTotal;
 
 	@Column(nullable = false)
 	private LocalDate data;
