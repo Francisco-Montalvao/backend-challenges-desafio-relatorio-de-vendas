@@ -1,17 +1,16 @@
 package com.franciscomontalvao.relatoriodevendas.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-public class VendedorException extends RuntimeException {
+@Getter
+public class RecursoNaoEncontradoException extends RuntimeException {
 	private final HttpStatus status;
 
-	public VendedorException(String message, HttpStatus httpStatus) {
+	public RecursoNaoEncontradoException(String message, HttpStatus httpStatus) {
 		super(message);
 
 		this.status = httpStatus;
 	}
 
-	public HttpStatus getStatus() {
-		return status;
-	}
 }
