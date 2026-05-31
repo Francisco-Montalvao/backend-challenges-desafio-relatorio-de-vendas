@@ -1,10 +1,10 @@
 package com.franciscomontalvao.relatoriodevendas.repository;
 
 
-import com.franciscomontalvao.relatoriodevendas.model.Vendedor;
+import com.franciscomontalvao.relatoriodevendas.model.Venda;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VendedorRepositoy extends JpaRepository<Vendedor, Long> {
+public interface VendaRepository extends JpaRepository<Venda, Long> {
 }

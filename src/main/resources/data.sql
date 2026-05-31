@@ -1,5 +1,5 @@
 -- ============================================================
--- import.sql — Seed do banco de dados
+-- data.sql — Seed do banco de dados
 -- Execute este arquivo para popular o banco com dados de teste
 -- ============================================================
 

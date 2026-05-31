@@ -1,4 +1,18 @@
 package com.franciscomontalvao.relatoriodevendas.dto.request;
 
-public class VendedorAtualizarDadosDTO {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+public record VendedorAtualizarDadosDTO(
+
+		@NotBlank(message = "Email nao pode estar vazio")
+		@Email
+		String email,
+
+		@NotBlank(message = "telefone nao pode estar vazio")
+		@Size(min = 11, max = 11, message = "tamanho invalido")
+		String telefone
+) {
 }
