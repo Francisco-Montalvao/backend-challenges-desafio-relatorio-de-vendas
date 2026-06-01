@@ -55,6 +55,7 @@ public class VendaService {
 		return mapper.toDto(venda);
 	}
 
+	@Transactional
 	public VendaResponseDTO atualizarVenda(Long id, VendaAtualizarRequestoDTO dto) {
 		var venda = buscarPorId(id);
 
@@ -63,6 +64,7 @@ public class VendaService {
 		return mapper.toDto(vendaAtualizada);
 	}
 
+	@Transactional
 	public void deletarVenda(Long id) {
 		var venda = buscarPorId(id);
 
