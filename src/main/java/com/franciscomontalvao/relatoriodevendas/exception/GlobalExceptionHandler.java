@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -73,5 +74,17 @@ public class GlobalExceptionHandler {
 				null
 		);
 		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED.value()).body(erro);
+	}
+
+	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+	public ResponseEntity<ErroPadrao> typeNotFound (HttpMediaTypeNotSupportedException ex, HttpServletRequest http){
+		ErroPadrao erro = new ErroPadrao(
+				LocalDate.now(),
+				HttpStatus.UNSUPPORTED_MEDIA_TYPE.value(),
+				"erro no tipo de recurso suportado pelo verbo",
+				http.getServletPath(),
+				null
+		);
+		return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value()).body(erro);
 	}
 }
